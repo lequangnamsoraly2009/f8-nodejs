@@ -9,6 +9,10 @@ const port = 3000
 app.use(morgan('combined'))
 
 app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.urlencoded({
+    extended: true
+}))
+app.use(express.json())
 
 // Template Engines
 app.engine('hbs', handlebars({
@@ -28,6 +32,10 @@ app.get('/', (req, res) => {
 
 app.get('/game', (req, res) => {
     res.render('game')
+})
+
+app.get('/search', (req, res) => {
+    res.render('search')
 })
 
 app.listen(port, () => {
