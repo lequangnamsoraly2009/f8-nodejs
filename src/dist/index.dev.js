@@ -15,21 +15,21 @@ app.use(morgan('combined'));
 app.use(express['static'](path.join(__dirname, 'public'))); // Template Engines
 
 app.engine(
-  'hbs',
-  handlebars({
-    // extname: change last name of handlebars is hbs
-    extname: '.hbs',
-  }),
+    'hbs',
+    handlebars({
+        // extname: change last name of handlebars is hbs
+        extname: '.hbs',
+    }),
 );
 app.set('view engine', 'hbs');
 app.set('views', path.join(__dirname, 'resources', 'views')); // API home
 
 app.get('/', function (req, res) {
-  res.render('home');
+    res.render('home');
 });
 app.get('/game', function (req, res) {
-  res.render('game');
+    res.render('game');
 });
 app.listen(port, function () {
-  console.log('App listening at http://localhost:'.concat(port));
+    console.log('App listening at http://localhost:'.concat(port));
 });
