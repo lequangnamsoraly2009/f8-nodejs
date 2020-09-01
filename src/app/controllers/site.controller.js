@@ -4,6 +4,7 @@ class SiteController {
     // API mặc định của news (/news)
     // [GET-/home-/]
     home(req, res, next) {
+        // Promise
         Course.find({})
             .then((courses) =>
                 res.render('home', {
