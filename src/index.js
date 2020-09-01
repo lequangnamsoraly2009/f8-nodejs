@@ -5,7 +5,7 @@ var handlebars = require('express-handlebars');
 const route = require('./routes/index.route');
 const app = express();
 const port = 3000;
-
+const db = require('./config/db/index.db');
 // HTTP Logger
 app.use(morgan('combined'));
 
@@ -30,6 +30,9 @@ app.set('views', path.join(__dirname, 'resources', 'views'));
 
 // Route Init
 route(app);
+
+// Connect to DB
+db.connect();
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`);

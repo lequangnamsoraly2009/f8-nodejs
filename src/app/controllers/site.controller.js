@@ -1,8 +1,17 @@
+const Course = require('../models/course.model');
+const { mutipleMongooseToObject } = require('../../util/mongoose');
 class SiteController {
     // API mặc định của news (/news)
     // [GET-/home-/]
-    home(req, res) {
-        res.render('home');
+    home(req, res, next) {
+        Course.find({})
+            .then((courses) =>
+                res.render('home', {
+                    courses: mutipleMongooseToObject(courses),
+                }),
+            )
+            .catch(next);
+        // res.render('home');
     }
     // [GET-/search]
     search(req, res) {
