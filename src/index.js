@@ -3,9 +3,13 @@ const path = require('path');
 const morgan = require('morgan');
 var handlebars = require('express-handlebars');
 const route = require('./routes/index.route');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 const app = express();
-const port = 3000;
+const dotenv = require('dotenv');
+dotenv.config();
 const db = require('./config/db/index.db');
+const { allowedNodeEnvironmentFlags } = require('process');
 // HTTP Logger
 app.use(morgan('combined'));
 
@@ -15,7 +19,7 @@ app.use(
         extended: true,
     }),
 );
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 
 // Template Engines
 app.engine(
@@ -26,14 +30,24 @@ app.engine(
     }),
 );
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'resources', 'views'));
 
+app.use(cookieParser());
+app.use(bodyParser.json()); //database
+
+app.use(
+    bodyParser.urlencoded({
+        extended: false,
+    }),
+);
+
+app.set('views', path.join(__dirname, 'resources', 'views'));
 // Route Init
 route(app);
 
 // Connect to DB
-db.connect();
+db.onConnection();
 
-app.listen(port, () => {
-    console.log(`App listening at http://localhost:${port}`);
+const PORT = process.env.PORT;
+app.listen(PORT, () => {
+    console.log(`App listening at http://localhost:${PORT}`);
 });
