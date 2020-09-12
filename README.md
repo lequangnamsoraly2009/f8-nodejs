@@ -8,4 +8,5 @@
 //tiến hành pull code của t về đẹp chưa :V
 
 ### Process Project 
-- 12/09/2020: create API food/:slug and create display detail food follow slug 
+- 12/09/2020: 	+ create API food/:slug and create display detail food follow slug 
+		+ create API food/create and create new food then save into Database

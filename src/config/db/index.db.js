@@ -37,6 +37,8 @@ class Connect {
                 keepAlive: true,
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
+                useCreateIndex: true,
+                useNewUrlParser: true,
             });
         };
 
