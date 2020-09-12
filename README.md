@@ -6,3 +6,6 @@
 
 //phai commit code len da
 //tiến hành pull code của t về đẹp chưa :V
+
+### Process Project 
+- 12/09/2020: create API food/:slug and create display detail food follow slug 
