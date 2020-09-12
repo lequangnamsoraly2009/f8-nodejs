@@ -1,5 +1,15 @@
-.test {
-    width: 100px;
-    height: 100px;
-    display: inline;
-}
+.image-courses {
+  width: 348px;
+  height: 261px; }
+
+.max-box {
+  width: 348px;
+  height: 463px; }
+
+.description-transform {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 70px; }
+
+a:hover {
+  text-decoration: none; }

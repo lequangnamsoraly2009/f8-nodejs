@@ -1,17 +1,17 @@
-const Course = require('../models/course.model');
+const Food = require('../models/food.model');
 const { mutipleMongooseToObject } = require('../util/mongoose');
-const { clearConfigCache } = require('prettier');
+
 class SiteController {
     // API mặc định của news (/news)
-    // [GET-/home-/]
+    // [GET-(/home)-/]
     async home(req, res) {
-        const courses = await Course.find({}); //xem cách gọi nhé
+        const foods = await Food.find({}); //xem cách gọi nhé
         // console.log(courses);
         res.render('home', {
-            courses,
+            foods: mutipleMongooseToObject(foods),
         });
     }
-    // [GET-/search]
+    // [GET-(/search)]
     search(req, res) {
         res.render('search');
     }
