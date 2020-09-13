@@ -18,9 +18,52 @@
             <td>{{this.createdAt}}</td>
             <td>
                 <a href="/food/edit/{{this._id}}" class="btn btn-link">Update</a>
-                <a href="" class="btn btn-link">Delete</a>
+                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-food-modal">Delete</a>
             </td>
         </tr>
         {{/each}}
     </tbody>
 </table>
+
+
+{{!-- Modal Confirm Delete --}}
+
+<div class="modal fade" id="delete-food-modal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Xóa à ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Thích thì xóa mà không thích thì xóa ?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thôi không xóa đâu !</button>
+        <button id="btn-delete-food" type="button" class="btn btn-danger">Xóa luôn ngại cc gì</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- Hidden Form Delete  --}}
+<form name="delete-form-food" method="POST"></form>
+
+<script>
+    {{!-- Cái addEventListener này dùng để load tất cả DOM sau đó mới thực hiện cái $ bên dưới --}}
+    document.addEventListener('DOMContentLoaded',function(){
+        var idDelete;
+        var deleteForm = document.forms['delete-form-food']; // Thông tin của form với method là delete nhưng hiện tại là chỉ giống form bên trên
+        var btnDeleteFood = document.getElementById('btn-delete-food'); // Lấy id của food cần xóa khi nhấn vào button "Xóa"
+        $('#delete-food-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            idDelete = button.data('id');
+        }) // Đoạn scrip lấy ra id trong boostrap modal
+        btnDeleteFood.onclick = ()=>{
+            deleteForm.action = '/food/' + idDelete + '?_method=DELETE'; // Từ form ta thêm thuộc tính action để có action cho API thực hiện
+            deleteForm.submit(); // Sau đó thì submit cái form lên để thực hiện API
+        }    
+    });
+</script>

@@ -53,7 +53,23 @@ class FoodController {
         const food = await Food.updateOne({ _id: req.params.id }, req.body);
         if (food) {
             res.redirect('/me/list');
+            return;
         }
+        res.send(
+            `<h1>Dont find food in store</h1> <a href='/me/list'>Go To Your List Food</a>`,
+        );
+    }
+
+    // [DELETE]-[/food/:id] - delete food
+    async deleteFood(req, res, next) {
+        const food = await Food.deleteOne({ _id: req.params.id });
+        if (food) {
+            res.redirect('back');
+            return;
+        }
+        res.send(
+            `<h1>Dont find food in store</h1> <a href='/me/list'>Go To Your List Food</a>`,
+        );
     }
 }
 

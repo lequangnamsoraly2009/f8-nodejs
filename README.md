@@ -20,3 +20,5 @@
 	+ Connect to MongoDB Cloud Online
 	+ create API me/list, display list food 
 	+ create API/PUT, update food then save into DB and upgrade UI
+- 14/09/2020:
+	+ create API/DELETE, delete food. Completely deletion does not return -> Ok fine damn....
