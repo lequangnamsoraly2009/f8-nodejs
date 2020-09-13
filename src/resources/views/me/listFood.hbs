@@ -1,0 +1,26 @@
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th scope="col">STT</th>
+            <th scope="col">Tên Món</th>
+            <th scope="col">Loại Món Ăn</th>
+            <th scope="col ">Ngày Thêm</th>
+            <th scope="col ">Dịch Vụ</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#each foods}}
+        <tr>
+            <th scope="row">{{sum @index 1}}</th>
+            <td>{{this.name}}</td>
+            <td>{{this.type}}</td>
+            <td>{{this.createdAt}}</td>
+            <td>
+                <a href="/food/edit/{{this._id}}" class="btn btn-link">Update</a>
+                <a href="" class="btn btn-link">Delete</a>
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>

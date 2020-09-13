@@ -9,6 +9,7 @@ const Food = new Schema(
         name: { type: String, required: true },
         description: { type: String },
         image: { type: String, maxLength: 255 },
+        type: { type: String, maxLength: 255, required: true },
         slug: { type: String, slug: 'name', unique: true },
     },
     {

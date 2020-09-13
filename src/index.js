@@ -4,10 +4,12 @@ const morgan = require('morgan');
 var handlebars = require('express-handlebars');
 const route = require('./routes/index.route');
 const cookieParser = require('cookie-parser');
+const methodOverride = require('method-override');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 const db = require('./config/db/index.db');
+const { helpers } = require('handlebars');
 // const { allowedNodeEnvironmentFlags } = require('process');
 
 // const {
@@ -23,6 +25,7 @@ app.use(
     }),
 );
 app.use(express.json({ limit: '50mb' }));
+app.use(methodOverride('_method'));
 
 // Template Engines
 app.engine(
@@ -30,6 +33,9 @@ app.engine(
     handlebars({
         // extname: change last name of handlebars is hbs
         extname: '.hbs',
+        helpers: {
+            sum: (a, b) => a + b,
+        },
     }),
 );
 app.set('view engine', 'hbs');

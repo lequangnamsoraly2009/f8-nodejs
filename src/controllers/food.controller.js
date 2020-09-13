@@ -1,4 +1,3 @@
-const e = require('express');
 const Food = require('../models/food.model');
 const {
     mongooseToObject,
@@ -34,6 +33,27 @@ class FoodController {
         food.save()
             .then(() => res.redirect('/'))
             .catch((error) => {});
+    }
+    // [GET]-[/food/:id/edit] - Sửa món ăn
+    async editFood(req, res, next) {
+        const food = await Food.findById({ _id: req.params.id });
+        if (food) {
+            res.render('food/editFood', {
+                food: mongooseToObject(food),
+            });
+            return;
+        }
+        res.send(
+            `<h1>Dont find food in store</h1> <a href='/me/list'>Go To Your List Food</a>`,
+        );
+    }
+
+    // [PUT]-[/food/:id] - Update
+    async updateFood(req, res, next) {
+        const food = await Food.updateOne({ _id: req.params.id }, req.body);
+        if (food) {
+            res.redirect('/me/list');
+        }
     }
 }
 
