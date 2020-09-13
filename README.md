@@ -17,5 +17,6 @@
 	+ create API food/:slug and create display detail food follow slug 
 	+ create API food/create and create new food then save into Database
 - 13/09/2020:
+	+ Connect to MongoDB Cloud Online
 	+ create API me/list, display list food 
 	+ create API/PUT, update food then save into DB and upgrade UI
