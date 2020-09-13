@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const connection = mongoose.connection;
 uri = process.env.URL_MONGODB;
-console.log(uri);
 class Connect {
     onConnection() {
         connection.on('connected', () => {
@@ -38,6 +37,8 @@ class Connect {
                 keepAlive: true,
                 useNewUrlParser: true,
                 useUnifiedTopology: true,
+                useCreateIndex: true,
+                useNewUrlParser: true,
             });
         };
 

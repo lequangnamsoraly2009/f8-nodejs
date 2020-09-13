@@ -1,23 +1,17 @@
-const Course = require('../models/course.model');
-// const { mutipleMongooseToObject } = require('../util/mongoose');
+const Food = require('../models/food.model');
+const { mutipleMongooseToObject } = require('../util/mongoose');
+
 class SiteController {
     // API mặc định của news (/news)
-    // [GET-/home-/]
+    // [GET-(/home)-/]
     async home(req, res) {
-        // Course.find({})
-        //     .then((courses) =>
-        //         res.render('home', {
-        //             courses: mutipleMongooseToObject(courses),
-        //         }),
-        //     )
-        //     .catch(next);
-        // res.render('home');
-        const courses = await Course.find({});
+        const foods = await Food.find({}); //xem cách gọi nhé
+        // console.log(courses);
         res.render('home', {
-            courses,
+            foods: mutipleMongooseToObject(foods),
         });
     }
-    // [GET-/search]
+    // [GET-(/search)]
     search(req, res) {
         res.render('search');
     }
