@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
-mongoose.plugin(slug);
+const mongooseDelete = require('mongoose-delete');
 
 const Schema = mongoose.Schema;
 
@@ -13,8 +13,16 @@ const Food = new Schema(
         slug: { type: String, slug: 'name', unique: true },
     },
     {
-        timestamps: true, //cái này là sẳn createAt vs updateAt
+        timestamps: true, //cái này là sẵn createAt vs updateAt
     },
 );
+
+// Plugins
+mongoose.plugin(slug);
+Food.plugin(mongooseDelete, {
+    overrideMethods: 'all', //xóa đè lên database
+    deletedAt: true, // Thời gian xóa
+    deletedBy: true, //Người xóa?
+});
 
 module.exports = mongoose.model('Food', Food);

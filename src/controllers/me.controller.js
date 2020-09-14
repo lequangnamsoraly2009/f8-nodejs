@@ -15,6 +15,13 @@ class MeController {
             foods: mutipleMongooseToObject(foods),
         });
     }
+
+    async listTrashFood(req, res, next) {
+        const foods = await Food.findDeleted({});
+        res.render('me/listTrashFood', {
+            foods: mutipleMongooseToObject(foods),
+        });
+    }
 }
 
 module.exports = new MeController();

@@ -28,10 +28,9 @@ class FoodController {
 
     // [POST]-[/food/store] - Save into database
     async createFood(req, res, next) {
-        const formData = req.body;
-        const food = new Food(formData);
+        const food = new Food(req.body);
         food.save()
-            .then(() => res.redirect('/'))
+            .then(() => res.redirect('/me/list'))
             .catch((error) => {});
     }
     // [GET]-[/food/:id/edit] - Sửa món ăn
@@ -60,8 +59,32 @@ class FoodController {
         );
     }
 
-    // [DELETE]-[/food/:id] - delete food
+    // [PATCH]-[/food/restore/:id] - Restore Food
+    async restoreFood(req, res, next) {
+        const food = await Food.restore({ _id: req.params.id });
+        if (food) {
+            res.redirect('back');
+            return;
+        }
+        res.send(
+            `<h1>Dont find food in store</h1> <a href='/me/list'>Go To Your List Food</a>`,
+        );
+    }
+
+    // [DELETE]-[/food/:id] - soft delete food
     async deleteFood(req, res, next) {
+        const food = await Food.delete({ _id: req.params.id });
+        if (food) {
+            res.redirect('back');
+            return;
+        }
+        res.send(
+            `<h1>Dont find food in store</h1> <a href='/me/list'>Go To Your List Food</a>`,
+        );
+    }
+
+    // [DELETE]-[/food/force/:id] - force delete food
+    async forceDeleteFood(req, res, next) {
         const food = await Food.deleteOne({ _id: req.params.id });
         if (food) {
             res.redirect('back');
