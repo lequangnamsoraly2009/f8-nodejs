@@ -3,3 +3,4 @@ package-lock.json
 note.txt
 src/public/css/
 yarn.lock
+.vscode
