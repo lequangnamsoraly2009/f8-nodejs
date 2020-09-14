@@ -1,8 +1,5 @@
 const Food = require('../models/food.model');
-const {
-    mongooseToObject,
-    mutipleMongooseToObject,
-} = require('../util/mongoose');
+const { mutipleMongooseToObject } = require('../util/mongoose');
 
 class MeController {
     async all(req, res) {

@@ -1,8 +1,5 @@
 const Food = require('../models/food.model');
-const {
-    mongooseToObject,
-    mutipleMongooseToObject,
-} = require('../util/mongoose');
+const { mongooseToObject } = require('../util/mongoose');
 
 class FoodController {
     async all(req, res) {
@@ -53,6 +50,11 @@ class FoodController {
         const food = await Food.updateOne({ _id: req.params.id }, req.body);
         if (food) {
             res.redirect('/me/list');
+            return;
+        } else {
+            res.send(
+                `<h1>Can't update food in store</h1> <a href='/me/list'>Go To Your List Food</a>`,
+            );
         }
     }
 }
