@@ -50,6 +50,6 @@ route(app);
 db.onConnection();
 
 const PORT = process.env.PORT;
-app.listen(PORT, () => {
+app.listen(PORT || 8080, () => {
     console.log(`App listening at http://localhost:${PORT}`);
 });
