@@ -11,6 +11,12 @@ const Food = new Schema(
         image: { type: String, maxLength: 255 },
         type: { type: String, maxLength: 255, required: true },
         slug: { type: String, slug: 'name', unique: true },
+        choose: {
+            type: Boolean,
+            required: true,
+            unique: true,
+            default: 'false',
+        },
     },
     {
         timestamps: true, //cái này là sẵn createAt vs updateAt

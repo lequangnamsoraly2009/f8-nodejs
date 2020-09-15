@@ -1,10 +1,9 @@
 
 <table class="table table-striped mt-4">
   <div class="mt-4">
-    <h4>Danh sách các món đã đăng</h4>
+    <h4>Giỏ Hàng</h4>
     <div class="d-flex justify-content-between">
-      <a href="/me/trash">Thùng rác nè T_T ({{countDeletedFood}})</a>
-      <a href="/food/create">Thêm món mới</a>
+      <a href="/">Mua Món Mới</a>
     </div>
   </div>
     <thead>
@@ -12,7 +11,7 @@
             <th scope="col">STT</th>
             <th scope="col">Tên Món</th>
             <th scope="col">Loại Món Ăn</th>
-            <th scope="col ">Ngày Thêm</th>
+            <th scope="col ">Ngày Mua</th>
             <th scope="col ">Dịch Vụ</th>
         </tr>
     </thead>
@@ -24,14 +23,13 @@
             <td>{{this.type}}</td>
             <td>{{this.createdAt}}</td>
             <td>
-                <a href="/food/edit/{{this._id}}" class="btn btn-link">Update</a>
-                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-food-modal">Delete</a>
+                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-food-modal">Xóa</a>
             </td>
         </tr>
         {{!-- Nếu ko có database thì chạy cái else --}}
         {{else}}
         <tr>
-          <td colspan="5" class="text-center">Không có món nào đã đăng ? -> <a href="/food/create">Thêm món mới </a></td>
+          <td colspan="5" class="text-center">Giỏ Hàng Trống <a href="/">Thêm món mới </a></td>
         </tr>
         {{/each}}
     </tbody>
@@ -64,18 +62,5 @@
 <form name="delete-form-food" method="POST"></form>
 
 <script>
-    {{!-- Cái addEventListener này dùng để load tất cả DOM sau đó mới thực hiện cái $ bên dưới --}}
-    document.addEventListener('DOMContentLoaded',function(){
-        var idDelete;
-        var deleteForm = document.forms['delete-form-food']; // Thông tin của form với method là delete nhưng hiện tại là chỉ giống form bên trên
-        var btnDeleteFood = document.getElementById('btn-delete-food'); // Lấy thông tin của food cần xóa khi nhấn vào button "Xóa"
-        $('#delete-food-modal').on('show.bs.modal', function (event) {
-            var button = $(event.relatedTarget);
-            idDelete = button.data('id');
-        }) // Đoạn scrip lấy ra id trong boostrap modal
-        btnDeleteFood.onclick = ()=>{
-            deleteForm.action = '/food/' + idDelete + '?_method=DELETE'; // Từ form ta thêm thuộc tính action để có action cho API thực hiện
-            deleteForm.submit(); // Sau đó thì submit cái form lên để thực hiện API
-        }    
-    });
+    
 </script>

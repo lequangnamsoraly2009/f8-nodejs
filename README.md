@@ -23,3 +23,5 @@
 - 14/09/2020:
 	+ create API/DELETE, delete food. Completely deletion does not return -> Ok fine damn....
 	+ create API/PATCH used to restore data. Create UI trash. 
+- 15/09/2020
+	+ create cart shopping 

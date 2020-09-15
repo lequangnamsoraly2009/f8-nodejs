@@ -5,5 +5,7 @@ const meController = require('../controllers/me.controller');
 
 router.get('/list', meController.listFood);
 router.get('/trash', meController.listTrashFood);
+router.get('/cart', meController.cartFood);
+router.post('/cart/add/:id', meController.cartAddFood);
 
 module.exports = router;
