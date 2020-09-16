@@ -25,3 +25,4 @@
 	+ create API/PATCH used to restore data. Create UI trash. 
 - 15/09/2020
 	+ create cart shopping 
+	+ create delete food from cart (simple -> not recommend)
