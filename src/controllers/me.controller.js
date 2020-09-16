@@ -42,6 +42,13 @@ class MeController {
         await Food.updateOne({ _id: req.params.id }, { choose: true });
         res.redirect('back');
     }
+
+    async cartDeleteFood(req, res, next) {
+        // const food = await Food.findByIdAndUpdate({ _id: req.params.id }, { 'choose': true }, {new: true})
+        // food.save(); // can lay ra ms find. k can save
+        await Food.updateOne({ _id: req.params.id }, { choose: false });
+        res.redirect('back');
+    }
 }
 
 module.exports = new MeController();

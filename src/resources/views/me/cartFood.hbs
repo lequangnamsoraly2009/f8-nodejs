@@ -62,5 +62,17 @@
 <form name="delete-form-food" method="POST"></form>
 
 <script>
-    
+    document.addEventListener('DOMContentLoaded',function(){
+        var idDelete;
+        var deleteForm = document.forms['delete-form-food']; // Thông tin của form với method là delete nhưng hiện tại là chỉ giống form bên trên
+        var btnDeleteFood = document.getElementById('btn-delete-food'); // Lấy thông tin của food cần xóa khi nhấn vào button "Xóa"
+        $('#delete-food-modal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            idDelete = button.data('id');
+        }) // Đoạn scrip lấy ra id trong boostrap modal
+        btnDeleteFood.onclick = ()=>{
+            deleteForm.action = '/me/cart/delete/' + idDelete; // Từ form ta thêm thuộc tính action để có action cho API thực hiện
+            deleteForm.submit(); // Sau đó thì submit cái form lên để thực hiện API
+        }    
+    });
 </script>
