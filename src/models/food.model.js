@@ -17,6 +17,7 @@ const Food = new Schema(
             unique: true,
             default: 'false',
         },
+        price: { type: Number, min: 0, required: true },
     },
     {
         timestamps: true, //cái này là sẵn createAt vs updateAt

@@ -1,68 +1,74 @@
-
-<table class="table table-striped mt-4">
-  <div class="mt-4">
-    <h4>Giỏ Hàng</h4>
-    <div class="d-flex justify-content-between">
-      <a href="/">Mua Món Mới</a>
+<h3 class="header-cart">GIỎ HÀNG ({{countCart}})</h3>
+<div class="row">
+    <div class="col-lg-9">
+        <div class="list-food-to-cart">
+            {{#each foods}}
+            <div class="one-food-detail">
+                <div class="avatar-food">
+                    <img class="avatar-food-detail" src="{{this.image}}" alt="">
+                </div>
+                <div class="food-detail">
+                    <div class="wrap-name-food">
+                        <div class="name-food">
+                            <a class="name-food-detail" href="/food/{{this.slug}}">{{this.name}}</a>
+                        </div>
+                        <div class="delete-food">
+                            {{!-- <a class="delete-food-detail" href="">Xóa</a> --}}
+                            <a href="" class="btn btn-link delete-food-detail" data-toggle="modal"
+                                data-id="{{this._id}}" data-target="#delete-food-modal">Xóa</a>
+                        </div>
+                    </div>
+                    <div class="wrap-price-food">
+                        <div class="price-food">
+                            <p>Giá: {{this.price}} vnđ</p>
+                        </div>
+                        <div class="count-food-select">
+                            <p>Số Lượng:                         
+                                <input type="number" name="numberFood" id="numberFood" value="1">
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+            <div class="text-center">Giỏ Hàng Trống <a href="/">Thêm món mới </a></div>
+            {{/each}}
+        </div>
     </div>
-  </div>
-    <thead>
-        <tr>
-            <th scope="col">STT</th>
-            <th scope="col">Tên Món</th>
-            <th scope="col">Loại Món Ăn</th>
-            <th scope="col ">Ngày Mua</th>
-            <th scope="col ">Dịch Vụ</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each foods}}
-        <tr>
-            <th scope="row">{{sum @index 1}}</th>
-            <td>{{this.name}}</td>
-            <td>{{this.type}}</td>
-            <td>{{this.createdAt}}</td>
-            <td>
-                <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-food-modal">Xóa</a>
-            </td>
-        </tr>
-        {{!-- Nếu ko có database thì chạy cái else --}}
-        {{else}}
-        <tr>
-          <td colspan="5" class="text-center">Giỏ Hàng Trống <a href="/">Thêm món mới </a></td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-
-{{!-- Modal Confirm Delete --}}
+    <div class="col-lg-3">
+        <div class="total-price-to-cart">
+            <form class="buy-cart" method="POST" action="/me/cart/create">
+                <button type="submit" class="btn btn-primary">Tiến Hành Đặt Hàng</button>
+            </form>
+        </div>
+    </div>
+</div>
 
 <div class="modal fade" id="delete-food-modal" tabindex="-1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Xóa à ?</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        Thích thì xóa mà không thích thì xóa ?
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Thôi không xóa đâu !</button>
-        <button id="btn-delete-food" type="button" class="btn btn-danger">Xóa luôn ngại cc gì</button>
-      </div>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Xóa à ?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Thích thì xóa mà không thích thì xóa ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Thôi không xóa đâu !</button>
+                <button id="btn-delete-food" type="button" class="btn btn-danger">Xóa luôn ngại cc gì</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
 
 {{!-- Hidden Form Delete  --}}
 <form name="delete-form-food" method="POST"></form>
 
 <script>
-    document.addEventListener('DOMContentLoaded',function(){
+    document.addEventListener('DOMContentLoaded', function () {
         var idDelete;
         var deleteForm = document.forms['delete-form-food']; // Thông tin của form với method là delete nhưng hiện tại là chỉ giống form bên trên
         var btnDeleteFood = document.getElementById('btn-delete-food'); // Lấy thông tin của food cần xóa khi nhấn vào button "Xóa"
@@ -70,9 +76,9 @@
             var button = $(event.relatedTarget);
             idDelete = button.data('id');
         }) // Đoạn scrip lấy ra id trong boostrap modal
-        btnDeleteFood.onclick = ()=>{
+        btnDeleteFood.onclick = () => {
             deleteForm.action = '/me/cart/delete/' + idDelete; // Từ form ta thêm thuộc tính action để có action cho API thực hiện
             deleteForm.submit(); // Sau đó thì submit cái form lên để thực hiện API
-        }    
+        }
     });
 </script>

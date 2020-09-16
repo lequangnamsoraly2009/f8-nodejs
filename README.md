@@ -26,3 +26,7 @@
 - 15/09/2020
 	+ create cart shopping 
 	+ create delete food from cart (simple -> not recommend)
+- 16/09/2020
+	+ create models Cart, User and update model Food
+	+ update Cart Shopping, create price and countFood
+	+ create API (read - update - delete - create) model Cart

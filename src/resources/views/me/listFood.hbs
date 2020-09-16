@@ -12,7 +12,7 @@
             <th scope="col">STT</th>
             <th scope="col">Tên Món</th>
             <th scope="col">Loại Món Ăn</th>
-            <th scope="col ">Ngày Thêm</th>
+            <th scope="col ">Giá</th>
             <th scope="col ">Dịch Vụ</th>
         </tr>
     </thead>
@@ -22,7 +22,7 @@
             <th scope="row">{{sum @index 1}}</th>
             <td>{{this.name}}</td>
             <td>{{this.type}}</td>
-            <td>{{this.createdAt}}</td>
+            <td>{{this.price}}</td>
             <td>
                 <a href="/food/edit/{{this._id}}" class="btn btn-link">Update</a>
                 <a href="" class="btn btn-link" data-toggle="modal" data-id="{{this._id}}" data-target="#delete-food-modal">Delete</a>
