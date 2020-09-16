@@ -1,19 +1,15 @@
 .image-courses {
-    width: 348px;
-    height: 261px;
-}
+  width: 348px;
+  height: 261px; }
 
 .max-box {
-    width: 348px;
-    height: 463px;
-}
+  width: 348px;
+  height: 463px; }
 
 .description-transform {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    height: 70px;
-}
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 70px; }
 
 a:hover {
-    text-decoration: none;
-}
+  text-decoration: none; }
