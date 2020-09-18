@@ -1,5 +1,6 @@
 const Food = require('../models/food.model');
-const Cart = require('../models/cart.model');
+const CartCollection = require('../models/cart.model');
+const BillCollection = require('../models/bill.model');
 const {
     mongooseToObject,
     multipleMongooseToObject,
@@ -30,20 +31,32 @@ class MeController {
 
     // [GET]-[/me/cart]
     async cartFood(req, res, next) {
-        const foods = await Food.find({ choose: true });
-        const countCart = await Food.countDocuments({ choose: true });
+        const arrCart = [];
+        await CartCollection.find({ customer: '5f6214c6552cbdf5ec1db9f4' })
+            .populate('product')
+            .then((carts) => {
+                carts.forEach((cart) => {
+                    arrCart.push(cart.product);
+                });
+            });
         res.render('me/cartFood', {
-            countCart,
-            foods: multipleMongooseToObject(foods),
+            foods: multipleMongooseToObject(arrCart),
         });
     }
 
     // [POST]-[/me/cart/add/:id]
     async cartAddFood(req, res, next) {
-        // const food = await Food.findByIdAndUpdate({ _id: req.params.id }, { 'choose': true }, {new: true})
-        // food.save(); // can lay ra ms find. k can save
-        await Food.updateOne({ _id: req.params.id }, { choose: true });
-        res.redirect('back');
+        const condition = {
+            customer: '5f6214c6552cbdf5ec1db9f4', // vi chua cho auth nen t lay tam ben data
+            product: req.params.id,
+        };
+
+        CartCollection.create(condition).then((cart) => {
+            if (cart) {
+                res.redirect('/');
+            }
+            res.send('<h1>Khong the them</h1>');
+        });
     }
 
     // [POST]-[/me/cart/delete/:id]
@@ -56,19 +69,33 @@ class MeController {
 
     // CART TÍNH TIỀN
 
-    // [POST]-[/me/cart/create]
-    async createCart(req, res, next) {
-        const cart = new Cart.create(req.body); //Bí cmn rồi
+    // [POST]-[/me/cart/payment]
+    async paymentCart(req, res, next) {
+        // const cart = new CartCollection.create(req.body); //Bí cmn rồi
+        const arrProduct = [];
+        await CartCollection.find({ customer: '5f6214c6552cbdf5ec1db9f4' })
+            .populate('product')
+            .then((carts) => {
+                carts.forEach((cart) => {
+                    arrProduct.push(cart.product);
+                });
+            });
+        const condition = {
+            customer: '5f6214c6552cbdf5ec1db9f4',
+            products: arrProduct,
+        };
+        const bill = await BillCollection.create(condition);
+        await CartCollection.deleteMany({
+            customer: '5f6214c6552cbdf5ec1db9f4',
+        });
+
+        if (bill) res.send(bill); // redirect(bill) -> tinh tong sp
     }
 
-    // [GET]-[/me/cart/read/:id]
-    async readCart(req, res, next) {}
-
-    // [PUT]-[/me/cart/update/:id]
-    async updateCart(req, res, next) {}
-
-    // [DELETE]-[/me/cart/delete/:id]
-    async deleteCart(req, res, next) {}
+    async bill(req, res) {
+        //tim bill -> lay ds sp -> tinh trong
+        // render(ds sp, gia tong);
+    }
 }
 
 module.exports = new MeController();

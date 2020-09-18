@@ -30,3 +30,7 @@
 	+ create models Cart, User and update model Food
 	+ update Cart Shopping, create price and countFood
 	+ create API (read - update - delete - create) model Cart
+- 18/09/2020
+	+ create Simple Bill
+	+ update cart controller :v (not me)
+	+ create model Bill

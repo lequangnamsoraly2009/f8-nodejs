@@ -2,19 +2,14 @@ const mongoose = require('mongoose');
 const slug = require('mongoose-slug-generator');
 const mongooseDelete = require('mongoose-delete');
 const User = require('./user.model');
-
+const FoodCollection = require('./food.model');
+//dat ten cho no de phan biet.
 const Schema = mongoose.Schema;
 
 const Cart = new Schema(
     {
-        customer: { type: Schema.Types.ObjectId, ref: 'User' },
-        product: [
-            {
-                nameFood: { type: String, unique: true },
-                priceFood: { type: Number, min: 0 },
-                numberFood: { type: Number, min: 0 },
-            },
-        ],
+        customer: { type: Schema.Types.ObjectId, ref: User },
+        product: { type: Schema.Types.ObjectId, ref: FoodCollection },
         totalMoney: { type: Number, min: 0 },
     },
     {
