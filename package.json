@@ -4,7 +4,8 @@
     "main": "src/index.js",
     "scripts": {
         "beautiful": "lint-staged",
-        "start": "nodemon src/index.js",
+        "dev": "nodemon src/index.js",
+        "start": "node src/index.js",
         "watch": "node-sass -w src/resources/scss --output src/public/css",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -30,13 +31,12 @@
         "mongoose-delete": "^0.5.2",
         "mongoose-slug-generator": "^1.0.4",
         "handlebars": "^4.5.0",
-        "husky": "^4.2.5",
-        "lint-staged": "^10.2.13",
         "morgan": "^1.10.0",
-        "node-sass": "^4.14.1",
         "prettier": "^2.1.1"
     },
     "devDependencies": {
-
+        "node-sass": "^4.14.1",
+        "husky": "^4.2.5",
+        "lint-staged": "^10.2.13"
     }
 }
