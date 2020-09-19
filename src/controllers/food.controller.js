@@ -1,4 +1,4 @@
-const Food = require('../models/food.model');
+const FoodCollection = require('../models/food.model');
 const {
     mongooseToObject,
     mutipleMongooseToObject,
@@ -11,7 +11,7 @@ class FoodController {
 
     // [GET]-[/food/:slug]
     async find(req, res) {
-        const food = await Food.findOne({ slug: req.params.slug });
+        const food = await FoodCollection.findOne({ slug: req.params.slug });
         if (food) {
             res.render('food/show', {
                 food: mongooseToObject(food),
@@ -28,14 +28,14 @@ class FoodController {
 
     // [POST]-[/food/store] - Save into database
     async createFood(req, res, next) {
-        const food = new Food(req.body);
+        const food = new FoodCollection(req.body);
         food.save()
             .then(() => res.redirect('/me/list'))
             .catch((error) => {});
     }
     // [GET]-[/food/:id/edit] - Sửa món ăn
     async editFood(req, res, next) {
-        const food = await Food.findById({ _id: req.params.id });
+        const food = await FoodCollection.findById({ _id: req.params.id });
         if (food) {
             res.render('food/editFood', {
                 food: mongooseToObject(food),
@@ -49,7 +49,10 @@ class FoodController {
 
     // [PUT]-[/food/:id] - Update
     async updateFood(req, res, next) {
-        const food = await Food.updateOne({ _id: req.params.id }, req.body);
+        const food = await FoodCollection.updateOne(
+            { _id: req.params.id },
+            req.body,
+        );
         if (food) {
             res.redirect('/me/list');
             return;
@@ -61,7 +64,7 @@ class FoodController {
 
     // [PATCH]-[/food/restore/:id] - Restore Food
     async restoreFood(req, res, next) {
-        const food = await Food.restore({ _id: req.params.id });
+        const food = await FoodCollection.restore({ _id: req.params.id });
         if (food) {
             res.redirect('back');
             return;
@@ -73,7 +76,7 @@ class FoodController {
 
     // [DELETE]-[/food/:id] - soft delete food
     async deleteFood(req, res, next) {
-        const food = await Food.delete({ _id: req.params.id });
+        const food = await FoodCollection.delete({ _id: req.params.id });
         if (food) {
             res.redirect('back');
             return;
@@ -85,7 +88,7 @@ class FoodController {
 
     // [DELETE]-[/food/force/:id] - force delete food
     async forceDeleteFood(req, res, next) {
-        const food = await Food.deleteOne({ _id: req.params.id });
+        const food = await FoodCollection.deleteOne({ _id: req.params.id });
         if (food) {
             res.redirect('back');
             return;

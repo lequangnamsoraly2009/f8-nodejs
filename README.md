@@ -34,3 +34,7 @@
 	+ create Simple Bill
 	+ update cart controller :v (not me)
 	+ create model Bill
+- 20/09/2020
+	+ create layout Checkout/Bill
+	+ create API Checkout
+	+ Upgrade UI 

@@ -34,7 +34,8 @@ app.engine(
         // extname: change last name of handlebars is hbs
         extname: '.hbs',
         helpers: {
-            sum: (a, b) => a + b, // r gọi ra ở đâu?
+            sum: (a, b) => a + b,
+            sub: (a, b) => a - b,
         },
     }),
 );

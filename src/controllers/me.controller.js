@@ -1,4 +1,4 @@
-const Food = require('../models/food.model');
+const FoodCollection = require('../models/food.model');
 const CartCollection = require('../models/cart.model');
 const BillCollection = require('../models/bill.model');
 const {
@@ -13,8 +13,10 @@ class MeController {
     // [GET]-[/me/list]
     async listFood(req, res, next) {
         try {
-            const countDeletedFood = await Food.countDocumentsDeleted({});
-            const foods = await Food.find({});
+            const countDeletedFood = await FoodCollection.countDocumentsDeleted(
+                {},
+            );
+            const foods = await FoodCollection.find({});
             res.render('me/listFood', {
                 countDeletedFood,
                 foods: multipleMongooseToObject(foods),
@@ -23,7 +25,7 @@ class MeController {
     }
     // [GET]-[/me/trash]
     async listTrashFood(req, res, next) {
-        const foods = await Food.findDeleted({});
+        const foods = await FoodCollection.findDeleted({});
         res.render('me/listTrashFood', {
             foods: multipleMongooseToObject(foods),
         });
@@ -39,7 +41,9 @@ class MeController {
                     arrCart.push(cart.product);
                 });
             });
+        const countProducts = arrCart.length;
         res.render('me/cartFood', {
+            countProducts,
             foods: multipleMongooseToObject(arrCart),
         });
     }
@@ -63,7 +67,10 @@ class MeController {
     async cartDeleteFood(req, res, next) {
         // const food = await Food.findByIdAndUpdate({ _id: req.params.id }, { 'choose': true }, {new: true})
         // food.save(); // can lay ra ms find. k can save
-        await Food.updateOne({ _id: req.params.id }, { choose: false });
+        // await FoodCollection.updateOne({ _id: req.params.id }, { choose: false });
+        await CartCollection.deleteOne({
+            customer: '5f6214c6552cbdf5ec1db9f4',
+        });
         res.redirect('back');
     }
 
@@ -85,11 +92,27 @@ class MeController {
             products: arrProduct,
         };
         const bill = await BillCollection.create(condition);
+
         await CartCollection.deleteMany({
             customer: '5f6214c6552cbdf5ec1db9f4',
         });
 
-        if (bill) res.send(bill); // redirect(bill) -> tinh tong sp
+        if (bill) {
+            let totalPrice = 0;
+            const arrPrice = [];
+            arrProduct.forEach((product) => {
+                arrPrice.push(product.price);
+            });
+            totalPrice = arrPrice.reduce((a, b) => {
+                return Number(a) + Number(b);
+            }, 0);
+            const countProducts = arrProduct.length;
+            res.render('bill/checkout', {
+                countProducts,
+                totalPrice,
+                arrProduct: multipleMongooseToObject(arrProduct),
+            });
+        }
     }
 
     async bill(req, res) {
