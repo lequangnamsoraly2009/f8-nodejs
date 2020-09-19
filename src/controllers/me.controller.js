@@ -8,7 +8,7 @@ const {
 
 class MeController {
     async all(req, res) {
-        res.redirect('/');
+        res.redirect('/', { title: 'Trang Chủ' });
     }
     // [GET]-[/me/list]
     async listFood(req, res, next) {
@@ -20,6 +20,7 @@ class MeController {
             res.render('me/listFood', {
                 countDeletedFood,
                 foods: multipleMongooseToObject(foods),
+                title: 'Danh sách sản phẩm',
             });
         } catch (error) {}
     }
@@ -28,6 +29,7 @@ class MeController {
         const foods = await FoodCollection.findDeleted({});
         res.render('me/listTrashFood', {
             foods: multipleMongooseToObject(foods),
+            title: 'Thùng Rác',
         });
     }
 
@@ -45,6 +47,7 @@ class MeController {
         res.render('me/cartFood', {
             countProducts,
             foods: multipleMongooseToObject(arrCart),
+            title: 'Giỏ Hàng Của Bạn',
         });
     }
 
@@ -111,13 +114,9 @@ class MeController {
                 countProducts,
                 totalPrice,
                 arrProduct: multipleMongooseToObject(arrProduct),
+                title: 'Thanh Toán Sản Phẩm',
             });
         }
-    }
-
-    async bill(req, res) {
-        //tim bill -> lay ds sp -> tinh trong
-        // render(ds sp, gia tong);
     }
 }
 

@@ -9,6 +9,7 @@ class SiteController {
         // console.log(courses);
         res.render('home', {
             foods: multipleMongooseToObject(foods),
+            title: 'Trang Chủ',
         });
     }
 }

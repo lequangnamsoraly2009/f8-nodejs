@@ -15,6 +15,7 @@ class FoodController {
         if (food) {
             res.render('food/show', {
                 food: mongooseToObject(food),
+                title: 'Thông Tin Chi Tiết',
             });
             return;
         }
@@ -23,7 +24,9 @@ class FoodController {
 
     // [GET]-[/food/create] - Thêm món mới
     async create(req, res, next) {
-        res.render('food/create');
+        res.render('food/create', {
+            title: 'Thêm Sản Phẩm',
+        });
     }
 
     // [POST]-[/food/store] - Save into database
@@ -39,6 +42,7 @@ class FoodController {
         if (food) {
             res.render('food/editFood', {
                 food: mongooseToObject(food),
+                title: 'Sửa Thông Tin Sản Phẩm',
             });
             return;
         }
