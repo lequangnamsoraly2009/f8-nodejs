@@ -1,3 +1,5 @@
+<form name="add-form-food" method="POST" >
+
 <div class="mt-4 mb-4">
     <div class="row">
         <div class="col-lg-3">
@@ -10,7 +12,9 @@
             <h4>{{food.type}}</h4>
             <h5>Giới thiệu sơ lược về món {{food.name}}</h5>
             <p>{{food.description}}</p>
-            <a href="#" class="btn btn-primary">Thêm vào Giỏ hàng</a>
+            <button data-id="{{food._id}}" type="submit" formaction="/me/cart/add/{{food._id}}" class="btn btn-primary" id="btn-add-food">Thêm vào Giỏ hàng</button>
         </div>
     </div>
 </div>
+    
+</form>

@@ -60,7 +60,7 @@ class MeController {
 
         CartCollection.create(condition).then((cart) => {
             if (cart) {
-                res.redirect('/');
+                res.redirect('back');
             }
             res.send('<h1>Khong the them</h1>');
         });
