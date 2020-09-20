@@ -1,22 +1,23 @@
-<form name="add-form-food" method="POST" >
-<div class="mt-4">
-    <div class="row">
-        {{#each foods}}
-        <div class="col-sm-6 col-lg-4">
-            <div class="card mb-4 max-box">
-                <a href="/food/{{this.slug}}">
-                    <img src="{{this.image}}" class="card-img-top image-courses" alt="{{this.name}}">
-                </a>
-                <div class="card-body">
+<form name="add-form-food" method="POST">
+    <div class="mt-4 font-size-text">
+        <div class="row">
+            {{#each foods}}
+            <div class="col-sm-6 col-lg-4">
+                <div class="card mb-4 max-box">
                     <a href="/food/{{this.slug}}">
-                        <h5 class="card-title">{{this.name}}</h5>
+                        <img src="{{this.image}}" class="card-img-top image-courses" alt="{{this.name}}">
                     </a>
-                    <p class="card-text description-transform">{{this.description}}</p>
-                    <button data-id="{{this._id}}" type="submit" formaction="/me/cart/add/{{this._id}}" class="btn btn-primary" id="btn-add-food">Mua Món Này</button>
+                    <div class="card-body">
+                        <a href="/food/{{this.slug}}">
+                            <h5 class="card-title">{{this.name}}</h5>
+                        </a>
+                        <p class="card-text description-transform">{{this.description}}</p>
+                        <button data-id="{{this._id}}" type="submit" formaction="/me/cart/add/{{this._id}}"
+                            class="btn btn-primary" id="btn-add-food">Mua Món Này</button>
+                    </div>
                 </div>
             </div>
+            {{/each}}
         </div>
-        {{/each}}
     </div>
-</div>
 </form>

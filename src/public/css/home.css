@@ -42,7 +42,7 @@
 }
 
 .header__navbar-user-name {
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 500;
 }
 
@@ -79,7 +79,7 @@
 
 .header__navbar-user-item a {
     font-weight: 400;
-    font-size: 1.4rem;
+    font-size: 1rem;
     text-decoration: none;
     color: var(--black-color);
     width: 100%;
@@ -112,7 +112,7 @@
 .header__navbar--item,
 .header__navbar--item--link {
     display: inline-block;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: white;
     text-decoration: none;
     /* text-decoration: none; -> Loại bỏ gạch chân dưới chữ */
@@ -152,7 +152,7 @@
 }
 
 .header__navbar_icon {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .header__navbar-text-nopointer {
@@ -273,7 +273,7 @@
 
 .header__notify--header h3 {
     color: #888;
-    font-size: 1.4rem;
+    font-size: 1rem;
     margin: 0;
     font-weight: 350;
     padding-left: 15px;
@@ -319,7 +319,7 @@
 
 .header__notify--name {
     display: block;
-    font-size: 1.3rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: black;
     margin-bottom: 7px;
@@ -327,7 +327,7 @@
 
 .header__notify--description {
     display: flex;
-    font-size: 1.2rem;
+    font-size: 0.75rem;
     font-weight: 300;
     color: black;
 }
@@ -340,8 +340,9 @@
     text-decoration: none;
     color: #666;
     padding: 16px 100px;
-    font-weight: 900;
+    font-weight: 500;
     margin: auto;
+    /* font-size: 0.4; */
 }
 
 
@@ -367,7 +368,7 @@
 }
 
 .auth-form__heading {
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     font-weight: 400;
     color: black;
     user-select: none;
@@ -375,7 +376,7 @@
 }
 
 .auth-form__switch {
-    font-size: 1.6rem;
+    font-size: 1rem;
     font-weight: 400;
     color: #ff6433;
     padding-top: 9px;
@@ -393,7 +394,7 @@
 .auth-form__input {
     width: 100%;
     height: 40px;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     padding: 0 12px;
     border: 1px solid var(--border-color);
     border-radius: 3px;
@@ -466,7 +467,7 @@
 .auth-form__link-facebook {
     height: 32px;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     color: white;
     background-color: darkslateblue;
     padding: 8px;
@@ -480,7 +481,7 @@
 .auth-form__link-google {
     height: 32px;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     color: black;
     padding: 8px;
     border-radius: 5px;
@@ -500,13 +501,13 @@
     position: relative;
     text-decoration: none;
     color: chocolate;
-    font-size: 1.5rem;
+    font-size: 1rem;
     margin-right: 5px;
 }
 
 .auth-form__link-help {
     text-decoration: none;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 300;
     color: #888;
     margin-left: 5px;
@@ -571,7 +572,7 @@
 .header__searching-text {
     height: 40px;
     width: 712px;
-    font-size: 16px;
+    font-size: 12px;
     font-weight: 350;
     margin-left: 10px;
     outline: none;
@@ -655,7 +656,7 @@
 }
 
 .header__cart-list-no-cart-msg {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     display: none;
     margin-top: 20px;
 }
@@ -670,7 +671,7 @@
     border-radius: 10px;
     border: 2px solid #ee4d2d;
     line-height: 12px;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
 }
 
 
@@ -683,7 +684,7 @@
 }
 
 .header__cart-heading {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     font-weight: 300;
     color: #666;
     text-align: left;
@@ -724,7 +725,7 @@
 }
 
 .header__cart-name {
-    font-size: 1.3rem;
+    font-size: 0.85rem;
     font-weight: 500;
     max-height: 2rem;
     line-height: 2rem;
@@ -743,18 +744,18 @@
 } */
 
 .header__cart-money {
-    font-size: 1.3rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: var(--font-index);
 }
 
 .header__cart-x {
-    font-size: 0.9rem;
+    font-size: 0.7rem;
     font-weight: 300;
 }
 
 .header__cart-quantum {
-    font-size: 1.2rem;
+    font-size: 0.8rem;
     font-weight: 350;
 }
 
@@ -765,12 +766,12 @@
 }
 
 .header__cart-description {
-    font-size: 1.1rem;
+    font-size: 0.74rem;
     font-weight: 300;
 }
 
 .header__cart-remove {
-    font-size: 1.3rem;
+    font-size: 0.85rem;
     font-weight: 500;
 }
 
@@ -804,12 +805,12 @@
 }
 
 .header__searching-select-label {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     color: black;
 }
 
 .header__searching-select-icon {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     color: black;
     margin: 0 10px;
     bottom: 1.5px;
@@ -889,7 +890,7 @@
 }
 
 .header__searching-items span {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     cursor: pointer;
     margin-left: 10px;
     border-radius: 3px;
@@ -922,7 +923,7 @@
 }
 
 .header__seaching-history-heading {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     font-weight: 100;
     color: #999;
     user-select: none;
@@ -938,7 +939,7 @@
 
 .header__seaching-history-item {
     height: 36px;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     list-style: none;
     outline: none;
     padding-left: 12px;
@@ -975,7 +976,7 @@
 }
 
 .category__heading {
-    font-size: 1.7rem;
+    font-size: 1.1rem;
     padding: 10px 16px;
     margin-top: 0;
     color: #222;
@@ -986,7 +987,7 @@
 
 .category__heading-icon {
     padding-right: 8px;
-    font-size: 1.5rem;
+    font-size: 0.95rem;
     position: relative;
     top: -1px;
 }
@@ -1017,7 +1018,7 @@
     position: relative;
     right: 0;
     text-decoration: none;
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     color: #222;
     padding: 10px 16px;
     display: block;
@@ -1047,7 +1048,7 @@
 }
 
 .home-filter-label {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     color: #555555;
     margin-right: 10px;
 }
@@ -1067,7 +1068,7 @@
 }
 
 .home-filer__page-number {
-    font-size: 1.5rem;
+    font-size: 0.95rem;
     color: black;
     margin-right: 22px;
 }
@@ -1107,7 +1108,7 @@
 
 .home-filter__page-icon {
     margin: auto;
-    font-size: 1.4rem;
+    font-size: 0.8rem;
     color: #555;
 }
 
@@ -1152,7 +1153,7 @@
 }
 
 .home-product-item__name {
-    font-size: 1.4rem;
+    font-size: 0.9rem;
     font-weight: 400;
     line-height: 1.8rem;
     height: 3.6rem;
@@ -1181,7 +1182,7 @@
 }
 
 .home-product-item__price-old {
-    font-size: 1.3rem;
+    font-size: 0.85rem;
     color: #666;
     text-decoration: line-through;
     margin-left: 10px;
@@ -1190,7 +1191,7 @@
 
 .home-product-item__price-current {
     color: var(--font-index);
-    font-size: 1.5rem;
+    font-size: 0.85rem;
     margin-left: 10px;
 }
 
@@ -1201,7 +1202,7 @@
 }
 
 .home-product-item__like {
-    font-size: 1.3rem;
+    font-size: 0.85rem;
     color: #666;
 }
 
