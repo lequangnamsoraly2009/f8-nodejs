@@ -66,9 +66,7 @@ input:focus {
     --header--height: 21px;
     --box-shadow-color: #666;
     --rating-color-gold: #ffce3e;
-    --header--search-height: calc(
-        var(--navbar--height) - var(--header--height)
-    );
+    --header--search-height: calc( var(--navbar--height) - var(--header--height));
     --width-for-all: 1200px;
 }
 
@@ -83,7 +81,9 @@ html {
     box-sizing: border-box;
 }
 
+
 /* Nền tảng cốt lõi của Responsive là theo thứ tự Grid -> Row -> Column */
+
 
 /* Responsive */
 
@@ -104,6 +104,7 @@ html {
     margin-right: -12px;
 }
 
+
 /* Test Responsive */
 
 .grid__column-2 {
@@ -119,6 +120,7 @@ html {
 .grid__column-10 {
     width: 83.3333%;
 }
+
 
 /* Animations */
 
@@ -139,6 +141,7 @@ html {
         transform: scale(var(--growth-to));
     }
 }
+
 
 /* Modal  */
 
@@ -170,6 +173,7 @@ html {
     position: relative;
     animation: growth linear 0.1s;
 }
+
 
 /* Button Style Primary  */
 
@@ -229,8 +233,10 @@ html {
     background-color: #999;
 }
 
+
 /* .button.ab -> tức là muốn gọi css này cho thằng nào đó thì thằng đó phải 
 có cả 2 class trên thì mới có hiệu lực */
+
 
 /* Selection Button Items */
 
@@ -293,6 +299,7 @@ có cả 2 class trên thì mới có hiệu lực */
 .select-input_item a:hover {
     color: var(--font-index);
 }
+
 
 /* Pagination  */
 
