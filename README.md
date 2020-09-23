@@ -40,3 +40,8 @@
 	+ Upgrade UI 
 - 23/09/2020
 	+ create SignIn and SignUp
+- 24/09/2020
+	+ create model User - SignIn and SignUp success.
+	+ middleware validate cookie when you log-in
+	+ fix some one bugs.
+	+ Json web token

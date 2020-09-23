@@ -16,6 +16,7 @@ class FoodController {
             res.render('food/show', {
                 food: mongooseToObject(food),
                 title: 'Thông Tin Chi Tiết',
+                user: req.user.name,
             });
             return;
         }
@@ -26,6 +27,7 @@ class FoodController {
     async create(req, res, next) {
         res.render('food/create', {
             title: 'Thêm Sản Phẩm',
+            user: req.user.name,
         });
     }
 
@@ -43,6 +45,7 @@ class FoodController {
             res.render('food/editFood', {
                 food: mongooseToObject(food),
                 title: 'Sửa Thông Tin Sản Phẩm',
+                user: req.user.name,
             });
             return;
         }

@@ -64,7 +64,7 @@
           <img
             src="https://lh3.googleusercontent.com/-ld07oChgJX4/AAAAAAAAAAI/AAAAAAAAAAA/AKF05nBCCLEidisLdqWTUT3B0ZejyXaSCw.CMID/s32-c/photo.jpg"
             alt="" class="header__navbar-user-avatar">
-          <span class="header__navbar-user-name">Admin</span>
+          <span class="header__navbar-user-name">{{user}}</span>
           <ul class="header__navbar-user-list">
             <li class="header__navbar-user-item">
               <a href="/me/info">Thông tin của tôi</a>
@@ -140,7 +140,7 @@
         <div class="header__cart-list header__cart-list-product">
           <h3 class="header__cart-heading">Sản phẩm đã thêm</h3>
           <ul class="header__cart-list-item">
-            {{#each foods}}
+            {{#each carts}}
             <li class="header__cart-item">
               <img src="{{this.image}}" alt=""
                 class="header__cart-item-img">

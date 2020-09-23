@@ -1,6 +1,8 @@
 const FoodCollection = require('../models/food.model');
 const CartCollection = require('../models/cart.model');
 const BillCollection = require('../models/bill.model');
+const UserCollection = require('../models/user.model');
+
 const {
     mongooseToObject,
     multipleMongooseToObject,
@@ -21,6 +23,7 @@ class MeController {
                 countDeletedFood,
                 foods: multipleMongooseToObject(foods),
                 title: 'Danh sách sản phẩm',
+                user: req.user.name,
             });
         } catch (error) {}
     }
@@ -30,13 +33,15 @@ class MeController {
         res.render('me/listTrashFood', {
             foods: multipleMongooseToObject(foods),
             title: 'Thùng Rác',
+            user: req.user.name,
         });
     }
 
     // [GET]-[/me/cart]
     async cartFood(req, res, next) {
         const arrCart = [];
-        await CartCollection.find({ customer: '5f6214c6552cbdf5ec1db9f4' })
+        const userAll = await UserCollection.find({ email: req.user.email });
+        await CartCollection.find({ customer: userAll[0]._id })
             .populate('product')
             .then((carts) => {
                 carts.forEach((cart) => {
@@ -47,32 +52,37 @@ class MeController {
         res.render('me/cartFood', {
             countProducts,
             foods: multipleMongooseToObject(arrCart),
+            carts: multipleMongooseToObject(arrCart),
             title: 'Giỏ Hàng Của Bạn',
+            user: req.user.name,
         });
     }
 
     // [POST]-[/me/cart/add/:id]
     async cartAddFood(req, res, next) {
+        const userAll = await UserCollection.find({ email: req.user.email });
         const condition = {
-            customer: '5f6214c6552cbdf5ec1db9f4', // vi chua cho auth nen t lay tam ben data
+            customer: userAll[0]._id, // vi chua cho auth nen t lay tam ben data
             product: req.params.id,
         };
 
-        CartCollection.create(condition).then((cart) => {
-            if (cart) {
-                res.redirect('back');
-            }
-            res.send('<h1>Khong the them</h1>');
-        });
+        CartCollection.create(condition)
+            .then((cart) => {
+                if (cart) {
+                    res.redirect('back');
+                }
+            })
+            .catch();
     }
 
     // [POST]-[/me/cart/delete/:id]
     async cartDeleteFood(req, res, next) {
+        const userAll = await UserCollection.find({ email: req.user.email });
         // const food = await Food.findByIdAndUpdate({ _id: req.params.id }, { 'choose': true }, {new: true})
         // food.save(); // can lay ra ms find. k can save
         // await FoodCollection.updateOne({ _id: req.params.id }, { choose: false });
         await CartCollection.deleteOne({
-            customer: '5f6214c6552cbdf5ec1db9f4',
+            customer: userAll[0]._id,
         });
         res.redirect('back');
     }
@@ -82,8 +92,10 @@ class MeController {
     // [POST]-[/me/cart/payment]
     async paymentCart(req, res, next) {
         // const cart = new CartCollection.create(req.body); //Bí cmn rồi
+        const userAll = await UserCollection.find({ email: req.user.email });
+
         const arrProduct = [];
-        await CartCollection.find({ customer: '5f6214c6552cbdf5ec1db9f4' })
+        await CartCollection.find({ customer: userAll[0]._id })
             .populate('product')
             .then((carts) => {
                 carts.forEach((cart) => {
@@ -91,13 +103,13 @@ class MeController {
                 });
             });
         const condition = {
-            customer: '5f6214c6552cbdf5ec1db9f4',
+            customer: userAll[0]._id,
             products: arrProduct,
         };
         const bill = await BillCollection.create(condition);
 
         await CartCollection.deleteMany({
-            customer: '5f6214c6552cbdf5ec1db9f4',
+            customer: userAll[0]._id,
         });
 
         if (bill) {
@@ -115,6 +127,7 @@ class MeController {
                 totalPrice,
                 arrProduct: multipleMongooseToObject(arrProduct),
                 title: 'Thanh Toán Sản Phẩm',
+                user: req.user.name,
             });
         }
     }

@@ -3,13 +3,13 @@
         <div class="col l-12 c-12 m-12">
             <div class="main-login">
 
-                <form action="" method="POST" class="form" id="form-1">
+                <form method="POST" action="/auth/sign-up" class="form" id="form-1">
                     <h3 class="heading">SIGN-UP</h3>
                     <p class="desc">Become new member with Soraly 🤞 </p>
 
                     <div class="form-group">
                         <label for="fullname" class="form-label">Full Name 😱</label>
-                        <input id="fullname" name="fullname" type="text" placeholder="Ex: Soraly" class="form-control">
+                        <input id="fullname" name="name" type="text" placeholder="Ex: Soraly" class="form-control">
                         <span class="form-message"></span>
                     </div>
 
@@ -27,7 +27,7 @@
 
                     <div class="form-group">
                         <label for="email" class="form-label">Email</label>
-                        <input id="email" name="email" type="text" placeholder="Ex: email@domain.com"
+                        <input id="email" name="email" type="email" placeholder="Ex: email@domain.com"
                             class="form-control">
                         <span class="form-message"></span>
                     </div>
@@ -41,12 +41,12 @@
 
                     <div class="form-group">
                         <label for="password_confirmation" class="form-label">Confirm Password 🤦‍♀️</label>
-                        <input id="password_confirmation" name="password_confirmation" placeholder="Confirm Password"
+                        <input id="password_confirmation" placeholder="Confirm Password"
                             type="password" class="form-control">
                         <span class="form-message"></span>
                     </div>
 
-                    <button class="form-submit btn">Sign-Up</button>
+                    <button type="submit" class="form-submit btn">Sign-Up</button>
                 </form>
 
             </div>
@@ -71,11 +71,6 @@
             }, 'Password is not match')
         ],
         errorSelector: '.form-message',
-        onSubmit: data => {
-            console.log(data)
-        },
-        onSubmit: data => {
-            console.log(data)
-        }
+  
     });
 </script>

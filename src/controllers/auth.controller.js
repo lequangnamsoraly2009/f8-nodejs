@@ -1,23 +1,49 @@
-const FoodCollection = require('../models/food.model');
-const CartCollection = require('../models/cart.model');
-const BillCollection = require('../models/bill.model');
-const AuthCollection = require('../models/user.model');
-const {
-    mongooseToObject,
-    multipleMongooseToObject,
-} = require('../util/mongoose');
+const userCollection = require('../models/user.model');
+const { hashPassword, comparePassword } = require('../middleWare/bcrypt');
+const jwt = require('jsonwebtoken');
 
 class AuthController {
     async all(req, res) {
         res.redirect('/', { title: 'Trang Chủ' });
     }
 
-    async signIn(req, res, next) {
+    async signIn(req, res) {
         res.render('auth/sign-in', { title: 'Đăng Nhập' });
     }
 
-    async signUp(req, res, next) {
+    async signUp(req, res) {
         res.render('auth/sign-up', { title: 'Đăng Kí' });
+    }
+
+    async postSignUp(req, res) {
+        req.body.password = await hashPassword(req.body.password);
+        const user = await userCollection.create(req.body);
+        res.redirect('/auth/sign-in');
+    }
+
+    async postSignIn(req, res) {
+        const user = await userCollection.findOne({ email: req.body.email });
+        if (user) {
+            const compare = await comparePassword(
+                req.body.password,
+                user.password,
+            );
+            if (compare) {
+                const token = jwt.sign(
+                    { email: user.email, name: user.name },
+                    process.env.TOKEN_SECRET,
+                    {
+                        expiresIn: 60 * 60 * 24,
+                    },
+                );
+                res.cookie('auth-token', token);
+                res.redirect('/');
+                return;
+            }
+            res.redirect('back');
+            return;
+        }
+        res.redirect('back');
     }
 }
 

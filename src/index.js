@@ -1,10 +1,12 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
-var handlebars = require('express-handlebars');
+const handlebars = require('express-handlebars');
 const route = require('./routes/index.route');
 const cookieParser = require('cookie-parser');
 const methodOverride = require('method-override');
+const expressSession = require('express-session');
+const passport = require('passport');
 const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
@@ -16,7 +18,7 @@ const { helpers } = require('handlebars');
 //     allowInsecurePrototypeAccess,
 // } = require('@handlebars/allow-prototype-access');
 // HTTP Logger
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(
@@ -26,6 +28,10 @@ app.use(
 );
 app.use(express.json({ limit: '50mb' }));
 app.use(methodOverride('_method'));
+
+app.use(expressSession({ secret: 'abcd123456y' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Template Engines
 app.engine(
@@ -51,6 +57,6 @@ route(app);
 db.onConnection();
 
 const PORT = process.env.PORT;
-app.listen(PORT || 8080, () => {
+app.listen(PORT, () => {
     console.log(`App listening at http://localhost:${PORT}`);
 });
