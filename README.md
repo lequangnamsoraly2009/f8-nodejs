@@ -38,3 +38,5 @@
 	+ create layout Checkout/Bill
 	+ create API Checkout
 	+ Upgrade UI 
+- 23/09/2020
+	+ create SignIn and SignUp
