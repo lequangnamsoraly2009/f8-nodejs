@@ -15,6 +15,12 @@ class AuthController {
         res.render('auth/sign-up', { title: 'Đăng Kí' });
     }
 
+    async logOut(req, res) {
+        let token = req.cookies['auth-token'];
+        res.clearCookie('auth-token');
+        res.redirect('/auth/sign-in');
+    }
+
     async postSignUp(req, res) {
         req.body.password = await hashPassword(req.body.password);
         const user = await userCollection.create(req.body);

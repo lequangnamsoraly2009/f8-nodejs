@@ -15,8 +15,8 @@ const User = new Schema(
             type: String,
             require: true,
         },
-        // hashPassword: { type: String, unique: true, required: true }, // sau xài cái này bằng middleware
         password: { type: String, require: true }, //test user
+        role: { type: String, default: 'user' },
     },
     {
         timestamps: true, //cái này là sẵn createAt vs updateAt

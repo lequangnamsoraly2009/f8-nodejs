@@ -2,9 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const meController = require('../controllers/me.controller');
+const { roleAdmin, roleUser } = require('../middleware/role.middleware');
 
-router.get('/list', meController.listFood);
-router.get('/trash', meController.listTrashFood);
+router.get('/list', roleAdmin, meController.listFood);
+router.get('/trash', roleAdmin, meController.listTrashFood);
 
 // Cart List
 

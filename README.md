@@ -45,3 +45,6 @@
 	+ middleware validate cookie when you log-in
 	+ fix some one bugs.
 	+ Json web token
+- 25/09/2020
+	+ add Log Out 
+	+ Add Role and crash :(
